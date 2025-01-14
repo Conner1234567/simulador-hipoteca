@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Hipotecas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador de Hipotecas</h1>
+        <label for="loanAmount">Importe del préstamo (€):</label>
+        <input type="number" id="loanAmount" placeholder="Ejemplo: 150000">
+
+        <label for="interestRate">Tipo de interés anual (%):</label>
+        <input type="number" id="interestRate" placeholder="Ejemplo: 3.5">
+
+        <label for="loanTerm">Plazo (años):</label>
+        <input type="number" id="loanTerm" placeholder="Ejemplo: 30">
+
+        <button onclick="calculateMortgage()">Calcular</button>
+
+        <div class="results" id="results" style="display: none;">
+            <p><strong>Cuota mensual:</strong> <span id="monthlyPayment">€</span></p>
+            <p><strong>Coste total de intereses:</strong> <span id="totalInterest">€</span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
