@@ -31,8 +31,8 @@ function calcularHipoteca() {
     // Calcular el total (hipoteca + gastos + intereses)
     const totalHipoteca = montoFinanciado + gastos + interesesTotales;
 
-    // Calcular el total de gastos (gastos de hipoteca + porcentaje no financiado por el banco)
-    const totalGastosAdicionales = gastos + montoNoFinanciado;
+    // Calcular el total de los ahorros necesarios (gastos de hipoteca + porcentaje no financiado por el banco)
+    const totalAhorrosNecesarios = gastos + montoNoFinanciado;
 
     // Mostrar los resultados
     document.getElementById('resultado-hipoteca').innerText = `Monto de la hipoteca: €${montoFinanciado.toFixed(2)}`;
@@ -40,5 +40,5 @@ function calcularHipoteca() {
     document.getElementById('resultado-cuota').innerText = `Cuota mensual: €${cuotaMensual.toFixed(2)}`;
     document.getElementById('resultado-intereses').innerText = `Intereses totales a pagar: €${interesesTotales.toFixed(2)}`;
     document.getElementById('resultado-total').innerText = `Total de la hipoteca (incluyendo gastos e intereses): €${totalHipoteca.toFixed(2)}`;
-    document.getElementById('resultado-gastos-total').innerText = `Estos son los ahorros que necesitas: €${totalGastosAdicionales.toFixed(2)}`;
+    document.getElementById('resultado-gastos-total').innerText = `Estos son los ahorros que necesitas: €${totalAhorrosNecesarios.toFixed(2)}`;
 }
