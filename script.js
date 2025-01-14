@@ -1,17 +1,26 @@
-function calculateMortgage() {
-    const loanAmount = parseFloat(document.getElementById('loanAmount').value);
-    const interestRate = parseFloat(document.getElementById('interestRate').value) / 100 / 12;
-    const loanTerm = parseFloat(document.getElementById('loanTerm').value) * 12;
+function calcularHipoteca() {
+    // Obtener valores de entrada
+    const precioVivienda = parseFloat(document.getElementById('precio-vivienda').value);
+    const porcentajeFinanciacion = parseFloat(document.getElementById('porcentaje-financiacion').value);
+    const plazoHipoteca = parseInt(document.getElementById('plazo-hipoteca').value);
+    const interesAno = parseFloat(document.getElementById('interes-ano').value) / 100;
+    const gastosHipoteca = parseFloat(document.getElementById('gastos-hipoteca').value) / 100;
 
-    if (isNaN(loanAmount) || isNaN(interestRate) || isNaN(loanTerm) || loanAmount <= 0 || interestRate <= 0 || loanTerm <= 0) {
-        alert('Por favor, introduce valores válidos.');
-        return;
-    }
+    // Calcular la hipoteca financiada
+    const montoFinanciado = precioVivienda * (porcentajeFinanciacion / 100);
 
-    const monthlyPayment = (loanAmount * interestRate) / (1 - Math.pow(1 + interestRate, -loanTerm));
-    const totalInterest = (monthlyPayment * loanTerm) - loanAmount;
+    // Calcular los gastos adicionales
+    const gastos = precioVivienda * gastosHipoteca;
 
-    document.getElementById('monthlyPayment').textContent = monthlyPayment.toFixed(2) + ' €';
-    document.getElementById('totalInterest').textContent = totalInterest.toFixed(2) + ' €';
-    document.getElementById('results').style.display = 'block';
+    // Calcular los intereses y la cuota mensual
+    const numPagos = plazoHipoteca * 12;
+    const tasaInteresMensual = interesAno / 12;
+    const cuotaMensual = montoFinanciado * (tasaInteresMensual * Math.pow(1 + tasaInteresMensual, numPagos)) / (Math.pow(1 + tasaInteresMensual, numPagos) - 1);
+    const interesesTotales = cuotaMensual * numPagos - montoFinanciado;
+
+    // Mostrar los resultados
+    document.getElementById('resultado-hipoteca').innerText = `Monto de la hipoteca: €${montoFinanciado.toFixed(2)}`;
+    document.getElementById('resultado-gastos').innerText = `Gastos de la hipoteca: €${gastos.toFixed(2)}`;
+    document.getElementById('resultado-cuota').innerText = `Cuota mensual: €${cuotaMensual.toFixed(2)}`;
+    document.getElementById('resultado-intereses').innerText = `Intereses totales a pagar: €${interesesTotales.toFixed(2)}`;
 }
