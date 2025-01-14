@@ -6,6 +6,12 @@ function calcularHipoteca() {
     const interesAno = parseFloat(document.getElementById('interes-ano').value) / 100;
     const gastosHipoteca = parseFloat(document.getElementById('gastos-hipoteca').value) / 100;
 
+    // Validar entradas
+    if (isNaN(precioVivienda) || precioVivienda <= 0 || isNaN(porcentajeFinanciacion) || porcentajeFinanciacion <= 0 || porcentajeFinanciacion > 100 || isNaN(plazoHipoteca) || plazoHipoteca <= 0 || isNaN(interesAno) || interesAno < 0 || isNaN(gastosHipoteca) || gastosHipoteca < 0) {
+        alert('Por favor, ingresa valores válidos en todos los campos.');
+        return;
+    }
+
     // Calcular la hipoteca financiada
     const montoFinanciado = precioVivienda * (porcentajeFinanciacion / 100);
 
@@ -27,4 +33,5 @@ function calcularHipoteca() {
     document.getElementById('resultado-cuota').innerText = `Cuota mensual: €${cuotaMensual.toFixed(2)}`;
     document.getElementById('resultado-intereses').innerText = `Intereses totales a pagar: €${interesesTotales.toFixed(2)}`;
     document.getElementById('resultado-total').innerText = `Total de la hipoteca (incluyendo gastos e intereses): €${totalHipoteca.toFixed(2)}`;
+    document.getElementById('resultado-gastos-total').innerText = `Total de gastos adicionales: €${gastos.toFixed(2)}`; // Total de los gastos
 }
