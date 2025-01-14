@@ -18,6 +18,10 @@ function calcularHipoteca() {
     // Calcular los gastos adicionales
     const gastos = precioVivienda * gastosHipoteca;
 
+    // Calcular el porcentaje no financiado por el banco
+    const porcentajeNoFinanciado = 100 - porcentajeFinanciacion;
+    const montoNoFinanciado = precioVivienda * (porcentajeNoFinanciado / 100);
+
     // Calcular los intereses y la cuota mensual
     const numPagos = plazoHipoteca * 12;
     const tasaInteresMensual = interesAno / 12;
@@ -27,11 +31,14 @@ function calcularHipoteca() {
     // Calcular el total (hipoteca + gastos + intereses)
     const totalHipoteca = montoFinanciado + gastos + interesesTotales;
 
+    // Calcular el total de gastos (gastos de hipoteca + porcentaje no financiado por el banco)
+    const totalGastosAdicionales = gastos + montoNoFinanciado;
+
     // Mostrar los resultados
     document.getElementById('resultado-hipoteca').innerText = `Monto de la hipoteca: €${montoFinanciado.toFixed(2)}`;
     document.getElementById('resultado-gastos').innerText = `Gastos de la hipoteca: €${gastos.toFixed(2)}`;
     document.getElementById('resultado-cuota').innerText = `Cuota mensual: €${cuotaMensual.toFixed(2)}`;
     document.getElementById('resultado-intereses').innerText = `Intereses totales a pagar: €${interesesTotales.toFixed(2)}`;
     document.getElementById('resultado-total').innerText = `Total de la hipoteca (incluyendo gastos e intereses): €${totalHipoteca.toFixed(2)}`;
-    document.getElementById('resultado-gastos-total').innerText = `Total de gastos adicionales: €${gastos.toFixed(2)}`; // Total de los gastos
+    document.getElementById('resultado-gastos-total').innerText = `Estos son los ahorros que necesitas: €${totalGastosAdicionales.toFixed(2)}`;
 }
