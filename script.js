@@ -18,9 +18,13 @@ function calcularHipoteca() {
     const cuotaMensual = montoFinanciado * (tasaInteresMensual * Math.pow(1 + tasaInteresMensual, numPagos)) / (Math.pow(1 + tasaInteresMensual, numPagos) - 1);
     const interesesTotales = cuotaMensual * numPagos - montoFinanciado;
 
+    // Calcular el total (hipoteca + gastos + intereses)
+    const totalHipoteca = montoFinanciado + gastos + interesesTotales;
+
     // Mostrar los resultados
     document.getElementById('resultado-hipoteca').innerText = `Monto de la hipoteca: €${montoFinanciado.toFixed(2)}`;
     document.getElementById('resultado-gastos').innerText = `Gastos de la hipoteca: €${gastos.toFixed(2)}`;
     document.getElementById('resultado-cuota').innerText = `Cuota mensual: €${cuotaMensual.toFixed(2)}`;
     document.getElementById('resultado-intereses').innerText = `Intereses totales a pagar: €${interesesTotales.toFixed(2)}`;
+    document.getElementById('resultado-total').innerText = `Total de la hipoteca (incluyendo gastos e intereses): €${totalHipoteca.toFixed(2)}`;
 }
